@@ -1,3 +1,4 @@
+//内容：实现了单链表
 #include <stdio.h>
 #include <stdlib.h>
 #define MaxSize 11
