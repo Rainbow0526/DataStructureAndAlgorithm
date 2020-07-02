@@ -1,3 +1,4 @@
+//在循环顺序队列上实现插入与删除操作 
 #include <stdio.h>
 #include <stdlib.h>
 #define OK 1

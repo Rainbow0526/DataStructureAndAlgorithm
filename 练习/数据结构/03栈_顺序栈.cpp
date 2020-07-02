@@ -1,3 +1,4 @@
+//Ë³ĞòÕ»µÄÊµÏÖ 
 #include <stdio.h>
 #include <stdlib.h>
 #include<iostream>

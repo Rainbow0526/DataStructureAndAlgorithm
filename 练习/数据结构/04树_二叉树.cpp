@@ -1,3 +1,11 @@
+/*
+内容：要求采用二叉链表作为存储结构，完成二叉树的建立，前序、中序和后序遍历的操作，求所有叶子及结点总数的操作等。
+具体实现要求：
+    1、创建一棵二叉链表存储结构的二叉树;
+    2、分别利用前序遍历、中序遍历、后序遍历所建二叉树；
+    3、求二叉树结点总数，观察输出结果；
+    4、求二叉树叶子总数，观察输出结果；
+*/
 #include<stdio.h>
 #include<stdlib.h>
 #include<malloc.h>
@@ -63,24 +71,16 @@ int Count(BinTree T)
         return Count(T->LChild)+Count(T->RChild)+1;
 }
 //叶子数 
-int LeafCount(BinTree T)
-{
-	if(T)
-	{
-		printf("执行了嘛1？\n");
-		if ((T->LChild==NULL )&&( T->RChild==NULL ) )
-		{
-			printf("执行了嘛2？\n");
-			return 1;
-		}
-		else {
-			printf("执行了嘛3？\n");
-			return LeafCount(T->LChild ) +LeafCount ( T->RChild );			
-		}
-
-	}
-	else
-		return 0;
+int LeafCount(BinTree T){
+    if(T == NULL){
+        return 0;
+    }
+    else if ((T->LChild==NULL) && (T->RChild==NULL)){
+        return 1;
+    }
+    else{
+        return LeafCount(T->LChild)+LeafCount(T->RChild);
+    }
 }
 int main()
 {
@@ -97,8 +97,8 @@ int main()
 	printf("四、后序遍历二叉树：\n");
 	PostOrder(bt);
 	printf("\n");
-    printf("五、二叉树结点数:%d\n",Count(bt));
-    printf("六、二叉树叶子数：%d\n",LeafCount(bt));
+    printf("五、二叉树结点数: %d\n",Count(bt));
+    printf("六、叶子节点的个数：%d \n",LeafCount(bt));
 	system("pause");
 }
 

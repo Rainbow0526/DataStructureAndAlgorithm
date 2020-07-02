@@ -1,3 +1,11 @@
+/*
+内容：单链表的查找、插入与删除。设计算法，实现线性结构上的单链表的产生以及元素的查找、插入与删除。
+具体实现要求：（具体代码作了调整） 
+    1、从键盘输入20个整数，产生带表头的单链表，并输出结点值；
+    2、从键盘输入1个整数，在单链表中查找该结点。若找到，则显示"找到了"；否则，则显示"找不到"；
+    3、从键盘输入2个整数，一个表示欲插入的位置i，另一个表示欲插入的数值x，将x插入在对应位置上，输出单链表所有结点值，观察输出结果；
+    4、从键盘输入1个整数，表示欲删除结点的位置，输出单链表所有结点值，观察输出结果；
+*/
 #include <stdio.h>
 #include <stdlib.h>
 typedef struct Link {
@@ -17,19 +25,12 @@ void display(link *p);
 int main() {
     //创建 
     int n,m;
-    printf("一、结点值为：\n");
     link *p = initLink();
     display(p);
     //查找 
     printf("二、请输入待查找元素：");
     scanf("%d",&n) ;
-    int address = selectElem(p, n);
-    if (address == -1) {
-        printf("找不到\n");
-    }
-    else {
-        printf("找到了\n");
-    }
+  	selectElem(p, n);
     //插入 
     printf("三、请输入插入位置：");
     scanf("%d",&m);
@@ -45,12 +46,18 @@ int main() {
     return 0;
 }
 link * initLink() {
+	int n,m;
     link * p = (link*)malloc(sizeof(link));//创建一个头结点
     link * temp = p;//声明一个指针指向头结点，用于遍历链表
+    p->next=NULL;
     //生成链表
-    for (int i = 1; i < 21; i++) {
+    printf("一、要输入几个数字：");
+    scanf("%d",&n);
+    for (int i = 1; i <= n; i++) {
         link *a = (link*)malloc(sizeof(link));
-        a->elem = i;
+        printf("请输入一个数字："); 
+        scanf("%d",&m);
+        a->elem = m;
         a->next = NULL;
         temp->next = a;
         temp = temp->next;
@@ -96,10 +103,12 @@ int selectElem(link * p, int elem) {
     while (t->next) {
         t = t->next;
         if (t->elem == elem) {
+        	printf("找到了,在第%d个位置\n",i);
             return i;
         }
         i++;
     }
+    printf("找不到\n");
     return -1;
 }
 link *amendElem(link * p, int add, int newElem) {
